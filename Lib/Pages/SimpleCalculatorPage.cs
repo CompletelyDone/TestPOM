@@ -21,26 +21,39 @@ namespace Lib.Pages
                 throw new Exception("Не удалось загрузить страницу SimpleCalculator");
             }
         }
-
-        private By incButtonAElem = By
-            .CssSelector("body > div > table > tbody > tr:nth-child(1) > td:nth-child(3) > button:nth-child(1)");
-        private By decButtonAElem = By
-            .CssSelector("body > div > table > tbody > tr:nth-child(1) > td:nth-child(3) > button:nth-child(2)");
-        private By incButtonBElem = By
-            .CssSelector("body > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > button:nth-child(1)");
-        private By decButtonBElem = By
-            .CssSelector("body > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > button:nth-child(2)");
-        private By inputATextBox = By.CssSelector("body > div > table > tbody > tr:nth-child(1) > td:nth-child(2) > input");
-        private By inputBTextBox = By.CssSelector("body > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > input");
+        private By incInputA = By.CssSelector("[ng-click=\"inca()\"]");
+        private By decInputA = By.CssSelector("[ng-click=\"deca()\"]");
+        private By incInputB = By.CssSelector("[ng-click=\"incb()\"]");
+        private By decInputB = By.CssSelector("[ng-click=\"decb()\"]");
+        private By inputATextBox = By.CssSelector("[ng-model=\"a\"]");
+        private By inputBTextBox = By.CssSelector("[ng-model=\"b\"]");
         private By selector = By.CssSelector("operation");
         private By result = By.ClassName("result");
 
+        public void IncreaseA()
+        {
+            driver.FindElement(this.incInputA).Click();
+        }
+        public void IncreaseB()
+        {
+            driver.FindElement(this.incInputB).Click();
+        }
+        public void DecreaseA()
+        {
+            driver.FindElement(this.decInputA).Click();
+        }
+        public void DecreaseB()
+        {
+            driver.FindElement(this.decInputB).Click();
+        }
         public void InputValueA(string value)
         {
+            driver.FindElement(this.inputATextBox).Clear();
             driver.FindElement(this.inputATextBox).SendKeys(value);
         }
         public void InputValueB(string value)
         {
+            driver.FindElement(this.inputBTextBox).Clear();
             driver.FindElement(this.inputBTextBox).SendKeys(value);
         }
         public void ChooseTheOperation(char c)
